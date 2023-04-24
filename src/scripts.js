@@ -6,9 +6,25 @@ import './css/styles.css';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-import fetchAll from './data.js/getData';
+import {fetchAll, fetchData} from './data.js/getData';
+import Traveler from './traveler';
+import Trip from './trip';
+import Destination from './destination';
+
+let currentTraveler;
 
 
-window.addEventListener('load', () => {
-  fetchAll()
-})
+
+function getData(){
+  fetchAll.then((travelerData) => {
+    travelerData[0].travelers.map((traveler) => new Traveler(traveler))
+    console.log(travelerData[3])
+    travelerData[2].trips.map((trip) => new Trip(trip))
+    travelerData[3].destinations.map((destination) => new Destination(destination))
+    currentTraveler = new Traveler(travelerData[1])
+  })
+}
+
+// on click of destination button, all the possible places, image, name etc...
+// Hide and view proper pages
+// 
