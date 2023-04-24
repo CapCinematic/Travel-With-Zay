@@ -8,7 +8,6 @@ import './css/styles.css';
 import './images/turing-logo.png'
 import fetchAll from './data.js/getData';
 
-console.log('This is the JavaScript entry file - your code begins here.');
 
 window.addEventListener('load', () => {
   fetchAll()
