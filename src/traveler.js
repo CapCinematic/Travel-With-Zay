@@ -9,9 +9,9 @@ class Traveler {
     this.trips = []
   }
 
- getTravelerById(travelerObj){
-  return travelerObj.id
- }
+  logIn(){
+    
+  }
 
 }
 export default Traveler

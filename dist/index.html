@@ -12,13 +12,15 @@
     <button class="plan-trip-button">Plan Trip</button>
     <button class="returning-traveler-button">Returning Traveler</button>
   </nav>
-  <section class="make-trip-section">
-    <form class="make-trip-form" hidden >
+  <section class="traveler-data-section">
+
+  </section>
+    <form class="make-trip-form hidden">
       <label for="date" class="travel-calandar">Date:</label>
-      <input class="choose-travel-date" type="date" id="date" name="date" value="">
+      <input class="choose-travel-date" type="date" id="date" name="date" value="" >
     
       <label for="duration">Trip Duration(Number of Days):</label>
-      <input class="duration-num" type="number" id="duration" name="duration" min="1">
+      <input class="duration-num"  type="number" id="duration" name="duration" min="1" value="">
     
       <label for="travelers">Number of Travelers:</label>
       <input class="num-travelers" type="number" id="travelers" name="travelers" min="1">
@@ -56,9 +58,8 @@
         <option value="29">Krakow, Poland</option>
         <option value="30">San Juan, Puerto Rico</option>
       </select>
-      <input class="submit-travel-data" type="submit" value="Submit">
+      <button class="submit-travel-data" type="button" value="">Submit</button>
     </form>
-  </section>
   <aside class="aside">
     <h1 class="greeting">Welcome Traveler!</h1>
     <div class="traveler-info"></div>

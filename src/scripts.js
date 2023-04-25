@@ -23,12 +23,15 @@ const travelCalendarValue = document.querySelector('.travel-calendar')
 const submitTravelButton = document.querySelector('.submit-travel-data')
 const datePickerValue = document.querySelector('.choose-travel-date')
 const numTravelers = document.querySelector('.num-travelers')
-const durationNum = document.querySelector('duration-num')
+const durationNum = document.querySelector('.duration-num')
 const selectDestination = document.querySelector('.select-destination')
-
+const makeTripForm = document.querySelector('.make-trip-form')
+const travelerSection = document.querySelector('.traveler-data-section')
 // window.addEventListener('load', getData)
 returningTravelerButton.addEventListener('click', travelerLogin)
 submitTravelButton.addEventListener('click', makeTrip)
+planTripButton.addEventListener('click', viewForm)
+
 function getData(e){
   e.preventDefault()
   const nameInput = document.querySelector('.name-input')
@@ -37,43 +40,39 @@ function getData(e){
   fetchAll(travelersId).then((travelerData) => {
     travelerData[0].travelers.map((traveler) => new Traveler(traveler))
     travelerData[2].trips.filter((trip) => trip.userID === 1).map((trip) => new Trip(trip))
-   
     // Setting Variable - replace with log in
     currentTraveler = new Traveler(travelerData[1])
     currentTravelerTrips =  travelerData[2].trips.filter((trip) => trip.userID === currentTraveler.id).map((trip) => {
       const newTrip = new Trip(trip, trip.travelers, trip.duration)
       console.log('scripLog',trip.duration)
       newTrip.findDestination(travelerData[3].destinations)
-      makeTrip(currentTraveler)
       return newTrip
     })
-    // Will need to do two array methods with real data
-    
-    // console.log(currentTraveler,currentTravelerTrips)
-    // Pass Data to functions
     displayTravelerData()
+    console.log(currentTraveler)
   })
 }
 
+// function assignTraveler(){
+//   const travelersId = nameInput.value.split('traveler')[1]
+// }
 
 function travelerLogin (e){
   e.preventDefault()
-  logInInput.innerHTML += `
+  logInInput.innerHTML = `
   <legend>Information:</legend>
        Full Name:<br>
        <input class="name-input" type="text" name="fullname" value="" placeholder="Full Name"><br>
        Password:<br>
        <input class="password-input" type="text" name="password" value="" placeholder="Password"><br>
        <button class="view-traveler-data">Log-In</button>
-  `
+  ` 
   const logInButton = document.querySelector('.view-traveler-data')
   logInButton.addEventListener('click', getData)
 }
 
 function displayTravelerData (){
-  // displayTravelerData(currentTraveler.name, currentTravelerTrips[0].date, currentTravelerDestinations[0].destination, currentTravelerDestinations[0].estimatedFlightCostPerPerson, currentTravelerTrips[0].status
-  //   )
-    displayInBody.innerHTML += `
+    travelerSection.innerHTML = `
   <table class="table">
       <colgroup>
         <col span="4" style="background-color: bisque;">
@@ -92,7 +91,10 @@ function displayTravelerData (){
   `
   displayTrips()
 }
+
 function displayTrips(){
+  homeButton.classList.remove('hidden')
+  planTripButton.classList.remove('hidden')
   const table = document.querySelector('.table')
 
   currentTravelerTrips.forEach(trip => {
@@ -110,11 +112,22 @@ function displayTrips(){
   })
  
 }
-function makeTrip(currentTraveler){
-  const userId = currentTraveler
-  const destinationId = selectDestination.value
-  const numTravelers = numTravelers.value
-  const date = datePickerValue.value
+function viewForm (){
+  makeTripForm.classList.remove('hidden')
+}
+
+function makeTrip(e){
+  const [year,month,day] = datePickerValue.value.split('-')
+  e.preventDefault()
+  makeTripForm.classList.remove('hidden')
+  const userId = currentTraveler.id
+  const destinationId = Number(selectDestination.value)
+  const travelers = numTravelers.value
+  const date = `${year}/${month}/${day}`
+  console.log('date',date)
   const duration = durationNum.value
-  postTrip(userId, destinationId, numTravelers, date, duration)
+  const status = 'pending'
+  const suggestedActivities = []
+  console.log('makeTripCurT',currentTraveler.id)
+  postTrip(userId, destinationId, travelers, date, duration,status, suggestedActivities)
 }
