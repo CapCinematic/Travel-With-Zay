@@ -33,13 +33,14 @@ function getData(e){
     // Setting Variable - replace with log in
     currentTraveler = new Traveler(travelerData[1])
     currentTravelerTrips =  travelerData[2].trips.filter((trip) => trip.userID === currentTraveler.id).map((trip) => {
-      const newTrip = new Trip(trip)
+      const newTrip = new Trip(trip, trip.travelers, trip.duration)
+      console.log('scripLog',trip.duration)
       newTrip.findDestination(travelerData[3].destinations)
       return newTrip
     })
     // Will need to do two array methods with real data
     
-    console.log(currentTraveler,currentTravelerTrips)
+    // console.log(currentTraveler,currentTravelerTrips)
     // Pass Data to functions
     displayTravelerData()
   })
@@ -66,15 +67,17 @@ function displayTravelerData (){
     displayInBody.innerHTML += `
   <table class="table">
       <colgroup>
-        <col span="3" style="background-color: bisque;">
-        <col style="background-color: aliceblue;">
+        <col span="4" style="background-color: bisque;">
+        <col span="3" style="background-color: aliceblue;">
       <tr>
         <th>${currentTraveler.name}</th>
-        <th>Trips</th>
+        <th>Trips Status</th>
         <th>Destinations</th>
-        <th>Price</th>
+        <th>Travelers</th>
+        <th>Flight Cost</th>
+        <th>Lodging Cost</th>
+        <th>Total Cost Of Trip</th>
       </tr>
-      
       </colgroup>
     </table> 
   `
@@ -89,22 +92,12 @@ function displayTrips(){
         <td>${trip.date}</td>
         <td>${trip.status}</td>
         <td>${trip.destination.destination}</td>
+        <td>${trip.travelers}</td>
         <td>${trip.destination.estimatedFlightCostPerPerson}</td>
-      </tr>
+        <td>${trip.destination.estimatedLodgingCostPerDay}</td>
+        <td>${trip.totalCost}</td>
+    </tr>
   `
   })
  
 }
-
-// on click of destination button, all the possible places, image, name etc...
-// Hide and view proper pages
-// 
-      // <select>
-      //   <option value="" placeholder="How long">Duration</option>
-      // </select>
-      // <select>
-      //   <option value="" placeholder="How Many Travelers?">Number Of Travelers</option>
-      // </select>
-      // <select>
-      //   <option value="" placeholder="Choose Destinations">List of Destinations</option>
-      // </select>

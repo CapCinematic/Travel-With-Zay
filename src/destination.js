@@ -6,7 +6,11 @@ class Destination {
     this.estimatedLodgingCostPerDay = destinationObj.estimatedLodgingCostPerDay
     this.id = destinationObj.id
     this.image = destinationObj.image
+    this.totalCost = this.estimatedFlightCostPerPerson
   }
+
+
+
 }
 
 export default Destination
