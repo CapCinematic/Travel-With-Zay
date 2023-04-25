@@ -9,9 +9,9 @@ const fetchData = (dataSet) => {
   }).catch(error => console.log(error))
   };
   
-  let fetchAll = Promise.all([
+  const fetchAll = (id) => Promise.all([
     fetchData('travelers'),
-    fetchData('travelers/1'),
+    fetchData(`travelers/${id}`),
     fetchData('trips'),
     fetchData('destinations'),
     ]);

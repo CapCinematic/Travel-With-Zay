@@ -12,24 +12,99 @@ import Trip from './trip';
 import Destination from './destination';
 
 let currentTraveler;
+let currentTravelerTrips;
+const logInInput = document.querySelector('.log-in')
+const returningTravelerButton = document.querySelector('.returning-traveler-button')
+const displayInBody = document.querySelector('.body')
 
-console.log('This is the JavaScript entry file - your code begins here.');
-// Selectors
-const travelerDisplay = document.querySelector('.traveler-info')
-const greeting = document.querySelector('.greeting')
 
-window.addEventListener('load', getData)
+// window.addEventListener('load', getData)
+returningTravelerButton.addEventListener('click', travelerLogin)
 
-function getData(){
-  fetchAll.then((travelerData) => {
+function getData(e){
+  e.preventDefault()
+  const nameInput = document.querySelector('.name-input')
+  const passwordInput = document.querySelector('.password-input')
+  const travelersId = nameInput.value.split('traveler')[1]
+  fetchAll(travelersId).then((travelerData) => {
     travelerData[0].travelers.map((traveler) => new Traveler(traveler))
-    console.log(travelerData[3])
-    travelerData[2].trips.map((trip) => new Trip(trip))
-    travelerData[3].destinations.map((destination) => new Destination(destination))
+    travelerData[2].trips.filter((trip) => trip.userID === 1).map((trip) => new Trip(trip))
+   
+    // Setting Variable - replace with log in
     currentTraveler = new Traveler(travelerData[1])
+    currentTravelerTrips =  travelerData[2].trips.filter((trip) => trip.userID === currentTraveler.id).map((trip) => {
+      const newTrip = new Trip(trip)
+      newTrip.findDestination(travelerData[3].destinations)
+      return newTrip
+    })
+    // Will need to do two array methods with real data
+    
+    console.log(currentTraveler,currentTravelerTrips)
+    // Pass Data to functions
+    displayTravelerData()
   })
+}
+
+
+function travelerLogin (e){
+  e.preventDefault()
+  logInInput.innerHTML += `
+  <legend>Information:</legend>
+       Full Name:<br>
+       <input class="name-input" type="text" name="fullname" value="" placeholder="Full Name"><br>
+       Password:<br>
+       <input class="password-input" type="text" name="password" value="" placeholder="Password"><br>
+       <button class="view-traveler-data">Log-In</button>
+  `
+  const logInButton = document.querySelector('.view-traveler-data')
+  logInButton.addEventListener('click', getData)
+}
+
+function displayTravelerData (){
+  // displayTravelerData(currentTraveler.name, currentTravelerTrips[0].date, currentTravelerDestinations[0].destination, currentTravelerDestinations[0].estimatedFlightCostPerPerson, currentTravelerTrips[0].status
+  //   )
+    displayInBody.innerHTML += `
+  <table class="table">
+      <colgroup>
+        <col span="3" style="background-color: bisque;">
+        <col style="background-color: aliceblue;">
+      <tr>
+        <th>${currentTraveler.name}</th>
+        <th>Trips</th>
+        <th>Destinations</th>
+        <th>Price</th>
+      </tr>
+      
+      </colgroup>
+    </table> 
+  `
+  displayTrips()
+}
+function displayTrips(){
+  const table = document.querySelector('.table')
+
+  currentTravelerTrips.forEach(trip => {
+    table.innerHTML +=` 
+    <tr>
+        <td>${trip.date}</td>
+        <td>${trip.status}</td>
+        <td>${trip.destination.destination}</td>
+        <td>${trip.destination.estimatedFlightCostPerPerson}</td>
+      </tr>
+  `
+  })
+ 
 }
 
 // on click of destination button, all the possible places, image, name etc...
 // Hide and view proper pages
 // 
+      // <select>
+      //   <option value="" placeholder="How long">Duration</option>
+      // </select>
+      // <select>
+      //   <option value="" placeholder="How Many Travelers?">Number Of Travelers</option>
+      // </select>
+      // <select>
+      //   <option value="" placeholder="Choose Destinations">List of Destinations</option>
+      // </select>
