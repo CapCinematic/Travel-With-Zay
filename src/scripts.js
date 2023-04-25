@@ -10,17 +10,25 @@ import {fetchAll, fetchData} from './data.js/getData';
 import Traveler from './traveler';
 import Trip from './trip';
 import Destination from './destination';
+import postTrip from './data.js/postData';
 
 let currentTraveler;
 let currentTravelerTrips;
 const logInInput = document.querySelector('.log-in')
 const returningTravelerButton = document.querySelector('.returning-traveler-button')
 const displayInBody = document.querySelector('.body')
-
+const planTripButton = document.querySelector('.plan-trip-button')
+const homeButton = document.querySelector('.home-button')
+const travelCalendarValue = document.querySelector('.travel-calendar')
+const submitTravelButton = document.querySelector('.submit-travel-data')
+const datePickerValue = document.querySelector('.choose-travel-date')
+const numTravelers = document.querySelector('.num-travelers')
+const durationNum = document.querySelector('duration-num')
+const selectDestination = document.querySelector('.select-destination')
 
 // window.addEventListener('load', getData)
 returningTravelerButton.addEventListener('click', travelerLogin)
-
+submitTravelButton.addEventListener('click', makeTrip)
 function getData(e){
   e.preventDefault()
   const nameInput = document.querySelector('.name-input')
@@ -36,6 +44,7 @@ function getData(e){
       const newTrip = new Trip(trip, trip.travelers, trip.duration)
       console.log('scripLog',trip.duration)
       newTrip.findDestination(travelerData[3].destinations)
+      makeTrip(currentTraveler)
       return newTrip
     })
     // Will need to do two array methods with real data
@@ -100,4 +109,12 @@ function displayTrips(){
   `
   })
  
+}
+function makeTrip(currentTraveler){
+  const userId = currentTraveler
+  const destinationId = selectDestination.value
+  const numTravelers = numTravelers.value
+  const date = datePickerValue.value
+  const duration = durationNum.value
+  postTrip(userId, destinationId, numTravelers, date, duration)
 }

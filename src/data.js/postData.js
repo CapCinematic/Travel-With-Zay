@@ -1,6 +1,6 @@
 
 
-function makeTrip(userID, destinationID, travelers, date, duration){
+function postTrip(userID, destinationID, travelers, date, duration){
   fetch("<http://localhost:3001/api/v1/trips>", {
   method: "POST",
   headers: {
@@ -23,4 +23,4 @@ function makeTrip(userID, destinationID, travelers, date, duration){
 }
 
 
-  export default makeTrip
+  export default postTrip
