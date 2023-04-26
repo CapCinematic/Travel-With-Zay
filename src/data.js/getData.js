@@ -6,7 +6,7 @@ const fetchData = (dataSet) => {
     } else {
       throw Error(response.statusText)
     }
-  }).catch(error => console.log(error))
+  }).catch(error => error)
   };
   
   const fetchAll = (id) => Promise.all([

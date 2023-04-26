@@ -103,7 +103,10 @@ aside p {
   line-height: 1.5;
 }
 
-
+.trip-row {
+  display: flex;
+  flex-direction: column;
+}
 #form1{
   border: solid 1px black;
   justify-content: center;
