@@ -6,3 +6,12 @@ body {
 .hidden{
   display: none;
 }
+.view{
+  display: contents;
+}
+
+#form1{
+  border: solid 1px black;
+  justify-content: center;
+  align-items: center;
+}

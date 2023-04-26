@@ -15,7 +15,6 @@ import postTrip from './data.js/postData';
 let currentTraveler;
 let currentTravelerTrips;
 const logInInput = document.querySelector('.log-in')
-const returningTravelerButton = document.querySelector('.returning-traveler-button')
 const displayInBody = document.querySelector('.body')
 const planTripButton = document.querySelector('.plan-trip-button')
 const homeButton = document.querySelector('.home-button')
@@ -27,20 +26,21 @@ const durationNum = document.querySelector('.duration-num')
 const selectDestination = document.querySelector('.select-destination')
 const makeTripForm = document.querySelector('.make-trip-form')
 const travelerSection = document.querySelector('.traveler-data-section')
-// window.addEventListener('load', getData)
-returningTravelerButton.addEventListener('click', travelerLogin)
+const tripsDisplay = document.querySelector('.table')
+window.addEventListener('load', travelerLogin)
 submitTravelButton.addEventListener('click', makeTrip)
 planTripButton.addEventListener('click', viewForm)
 
 function getData(e){
   e.preventDefault()
+  homeButton.classList.remove('hidden')
+  planTripButton.classList.remove('hidden')
   const nameInput = document.querySelector('.name-input')
   const passwordInput = document.querySelector('.password-input')
   const travelersId = nameInput.value.split('traveler')[1]
   fetchAll(travelersId).then((travelerData) => {
     travelerData[0].travelers.map((traveler) => new Traveler(traveler))
     travelerData[2].trips.filter((trip) => trip.userID === 1).map((trip) => new Trip(trip))
-    // Setting Variable - replace with log in
     currentTraveler = new Traveler(travelerData[1])
     currentTravelerTrips =  travelerData[2].trips.filter((trip) => trip.userID === currentTraveler.id).map((trip) => {
       const newTrip = new Trip(trip, trip.travelers, trip.duration)
@@ -53,9 +53,6 @@ function getData(e){
   })
 }
 
-// function assignTraveler(){
-//   const travelersId = nameInput.value.split('traveler')[1]
-// }
 
 function travelerLogin (e){
   e.preventDefault()
@@ -72,8 +69,10 @@ function travelerLogin (e){
 }
 
 function displayTravelerData (){
-    travelerSection.innerHTML = `
-  <table class="table">
+  homeButton.classList.remove('hidden')
+  planTripButton.classList.remove('hidden')
+  travelerSection.innerHTML = `
+  <table class="table" view>
       <colgroup>
         <col span="4" style="background-color: bisque;">
         <col span="3" style="background-color: aliceblue;">
@@ -93,8 +92,6 @@ function displayTravelerData (){
 }
 
 function displayTrips(){
-  homeButton.classList.remove('hidden')
-  planTripButton.classList.remove('hidden')
   const table = document.querySelector('.table')
 
   currentTravelerTrips.forEach(trip => {
@@ -117,14 +114,14 @@ function viewForm (){
 }
 
 function makeTrip(e){
-  const [year,month,day] = datePickerValue.value.split('-')
   e.preventDefault()
+  const [year,month,day] = datePickerValue.value.split('-')
   makeTripForm.classList.remove('hidden')
   const userId = currentTraveler.id
   const destinationId = Number(selectDestination.value)
   const travelers = numTravelers.value
   const date = `${year}/${month}/${day}`
-  console.log('date',date)
+  console.log('date', date)
   const duration = durationNum.value
   const status = 'pending'
   const suggestedActivities = []

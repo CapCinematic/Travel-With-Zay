@@ -35,26 +35,5 @@ describe('Traveler', () => {
         suggestedActivities: [],
     }])
   });
-
-  // it('should be able to return total cost', () => {
-    
-  // })
-
-  // it('should be able to calculate total spent on trips', () => {
-    
-  // })
-
-  // it('should be able to get trip details', () => {
-    
-  // })
-
-  it.skip('', () => {
-    
-  })
-
-  it.skip('', () => {
-    
-  })
-
 })
 
