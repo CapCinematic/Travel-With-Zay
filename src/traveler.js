@@ -1,8 +1,8 @@
 class Traveler {
   constructor (travelerObj){
     this.id = travelerObj.id, 
-    this.name = 'John Smith'||travelerObj.name, 
-    this.travelType = 'business' || travelerObj.travelerType
+    this.name = travelerObj.name, 
+    this.travelType = travelerObj.travelerType
     this.trips = []
   }
 
