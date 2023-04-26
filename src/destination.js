@@ -5,7 +5,7 @@ class Destination {
     destinationObj.estimatedFlightCostPerPerson;
     this.estimatedLodgingCostPerDay = 100 || destinationObj.estimatedLodgingCostPerDay;
     this.id = 4 || destinationObj.id;
-    this.image = 'Image'|| destinationObj.image;
+    this.image = destinationObj.image;
     this.totalCost = this.estimatedFlightCostPerPerson;
   }
 }
