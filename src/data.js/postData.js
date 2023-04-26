@@ -25,4 +25,3 @@ function postTrip(userID, destinationID, travelers, date, duration, status, sugg
 
 export default postTrip;
 
-// id: <number>, userID: <number>, destinationID: <number>, travelers: <number>, date: <string 'YYYY/MM/DD'>, duration: <number>, status: <string 'approved' or 'pending'>, suggestedActivities: <array of strings></array>

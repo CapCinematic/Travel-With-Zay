@@ -14,10 +14,8 @@ import postTrip from "./data.js/postData";
 let currentTraveler;
 let currentTravelerTrips;
 const logInInput = document.querySelector(".log-in");
-const displayInBody = document.querySelector(".body");
 const planTripButton = document.querySelector(".plan-trip-button");
 const homeButton = document.querySelector(".home-button");
-const travelCalendarValue = document.querySelector(".travel-calendar");
 const submitTravelButton = document.querySelector(".submit-travel-data");
 const datePickerValue = document.querySelector(".choose-travel-date");
 const numTravelers = document.querySelector(".num-travelers");
@@ -25,12 +23,12 @@ const durationNum = document.querySelector(".duration-num");
 const selectDestination = document.querySelector(".select-destination");
 const makeTripForm = document.querySelector(".make-trip-form");
 const travelerSection = document.querySelector(".traveler-data-section");
-const tripsDisplay = document.querySelector(".table");
-const displayPhoto =document.querySelector(".image-section")
 window.addEventListener("load", travelerLogin);
 submitTravelButton.addEventListener("click", makeTrip);
 planTripButton.addEventListener("click", viewForm);
-homeButton.addEventListener('click', getInspired)
+
+
+
 
 function getData(e) {
   e.preventDefault();
@@ -53,33 +51,35 @@ function getData(e) {
         newTrip.findDestination(travelerData[3].destinations);
         return newTrip;
       });
-    displayTravelerData();
-    console.log(currentTraveler);
+      if(passwordInput.value === 'traveler'){
+        displayTravelerData();
+        console.log(currentTraveler);
+      }
   });
 }
 
 function travelerLogin(e) {
   e.preventDefault();
   logInInput.innerHTML = `
-  <legend>Information:</legend>
-       Full Name:<br>
-       <input class="name-input" type="text" name="fullname" value="" placeholder="Full Name"><br>
+  <legend alt="Log In Information">Log In Information:</legend>
+       TravelerID:<br>
+       <input class="name-input" type="text" name="fullname" value="" placeholder="travelerID" alt="Traveler Id Input"><br>
        Password:<br>
-       <input class="password-input" type="text" name="password" value="" placeholder="Password"><br>
+       <input class="password-input" type="text" name="password" value="" placeholder="Password(traveler)" alt="Traveler Password Input"><br>
        <button class="view-traveler-data">Log-In</button>
-  `;
+  `
   const logInButton = document.querySelector(".view-traveler-data");
-  logInButton.addEventListener("click", getData);
+  logInButton.addEventListener("click", getData)
 }
 
 function displayTravelerData() {
   homeButton.classList.remove("hidden");
   planTripButton.classList.remove("hidden");
   travelerSection.innerHTML = `
-  <table class="table" view>
+  <table class="table" view alt="Table Of Trip Information">
       <colgroup>
         <col span="4" style="background-color: bisque;">
-        <col span="3" style="background-color: aliceblue;">
+        <col span="4" style="background-color: aliceblue;">
       <tr>
         <th>${currentTraveler.name}</th>
         <th>Trips Status</th>
@@ -88,6 +88,7 @@ function displayTravelerData() {
         <th>Flight Cost</th>
         <th>Lodging Cost</th>
         <th>Total Cost Of Trip</th>
+        <th>Memories</th>
       </tr>
       </colgroup>
     </table> 
@@ -108,6 +109,7 @@ function displayTrips() {
         <td>${trip.destination.estimatedFlightCostPerPerson}</td>
         <td>${trip.destination.estimatedLodgingCostPerDay}</td>
         <td>${trip.totalCost}</td>
+        <td><img src="${trip.destination.image}" height="100px" width="200px"/></td>
     </tr>
   `;
   });
@@ -126,27 +128,8 @@ function makeTrip(e) {
   const destinationId = Number(selectDestination.value);
   const travelers = numTravelers.value;
   const date = `${year}/${month}/${day}`;
-  console.log("date", date);
   const duration = durationNum.value;
   const status = "pending";
   const suggestedActivities = [];
-  console.log("makeTripCurT", currentTraveler.id);
-  postTrip(
-    userId,
-    destinationId,
-    travelers,
-    date,
-    duration,
-    status,
-    suggestedActivities
-  );
+  postTrip(userId, destinationId, travelers, date, duration, status, suggestedActivities);
 }
-
-function getInspired(){
- displayPhoto.classList.remove('hidden')
- travelerSection.classList.add('hidden')
-}
-
-function getRandomIndex(array){
-  return Math.floor(Math.random() * array.length)
-};
