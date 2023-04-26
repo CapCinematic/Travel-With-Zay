@@ -1,6 +1,98 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* header */
+nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightcoral;
+  color: whitesmoke;
+  padding: 20px;
+}
+
+nav button{
+  background-color: aliceblue;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: solid 1px black;
+  color: #0077c0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+nav button:hover {
+  background-color: plum;
+  color: whitesmoke;
+}
+.section{
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: lavender;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #888888;
+}
+
+form label{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+form input[type="date"],
+form input[type="number"],
+form select {
+  font-size: 16px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+form input[type="submit"],
+form button {
+  background-color: #0077c0;
+  color: whitesmoke;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover,
+form button:hover {
+  background-color: green;
+}
+
+aside{
+  margin: 20px auto;
+  max-width: 300px;
+  background-color: sandybrown;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #888888;
+}
+
+.greeting {
+  margin: 55px;
+}
+
+aside h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+aside p {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .hidden{

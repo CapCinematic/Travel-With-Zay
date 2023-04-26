@@ -93,7 +93,7 @@ function displayTravelerData (){
 
 function displayTrips(){
   const table = document.querySelector('.table')
-
+  logInInput.classList.add('hidden')
   currentTravelerTrips.forEach(trip => {
     table.innerHTML +=` 
     <tr>
@@ -111,6 +111,7 @@ function displayTrips(){
 }
 function viewForm (){
   makeTripForm.classList.remove('hidden')
+  logInInput.classList.add('hidden')
 }
 
 function makeTrip(e){
