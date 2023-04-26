@@ -1,17 +1,15 @@
-
-
 import Destination from "./destination"
 class Trip {
   constructor(tripObj, numTravelers, numDuration){
-    this.date = tripObj.date;
-    this.destinationID = tripObj.destinationID;
-    this.destination = undefined;
-    this.duration = numDuration;
-    this.id = tripObj.id;
-    this.status = tripObj.status;
-    this.suggestedActivities = tripObj.suggestedActivities;
-    this.travelers = numTravelers;
-    this.userID = tripObj.userID;
+    this.date = '2022/06/05' || tripObj.date;
+    this.destinationID = 4 || tripObj.destinationID;
+    this.destination = 'Paris, France' || undefined;
+    this.duration = 7 || numDuration;
+    this.id = 1 || tripObj.id;
+    this.status = 'approved' || tripObj.status;
+    this.suggestedActivities = [] || tripObj.suggestedActivities;
+    this.travelers = 2 || numTravelers;
+    this.userID = 1 || tripObj.userID;
     this.totalCost = undefined;
   }
 

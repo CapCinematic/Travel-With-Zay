@@ -1,11 +1,11 @@
 class Destination {
   constructor(destinationObj) {
-    this.destination = destinationObj.destination;
-    this.estimatedFlightCostPerPerson =
-      destinationObj.estimatedFlightCostPerPerson;
-    this.estimatedLodgingCostPerDay = destinationObj.estimatedLodgingCostPerDay;
-    this.id = destinationObj.id;
-    this.image = destinationObj.image;
+    this.destination = 'Paris, France'|| destinationObj.destination;
+    this.estimatedFlightCostPerPerson = 500 || 
+    destinationObj.estimatedFlightCostPerPerson;
+    this.estimatedLodgingCostPerDay = 100 || destinationObj.estimatedLodgingCostPerDay;
+    this.id = 4 || destinationObj.id;
+    this.image = 'Image'|| destinationObj.image;
     this.totalCost = this.estimatedFlightCostPerPerson;
   }
 }

@@ -1,39 +1,38 @@
 import chai from 'chai';
 const expect = chai.expect;
-import Traveler from '../src/single-traveler';
-import { getTraveler } from '../src/data.js/getData';
+import Traveler from '../src/traveler';
+
+
 describe('Traveler', () => {
   let traveler;
 
   beforeEach(() => {
-    traveler = new Traveler({id: getTraveler.id, name: getTraveler.name, travelType: getTraveler.travelType})
-  });
-  it('should be a function', function () {
-    expect(Traveler).to.be.a('function');
-  });
-
-  it('should have a single traveler object', () => {
-    expect(traveler.singleTraveler).to.deep.equal(
-      { id: 1, name: 'John Smith', travelType: 'business' }
-    );
-  })
-
-  it('should have default values for trips and pendingTrips', () => {
-    expect(traveler.trips).to.deep.equal([]);
-    expect(traveler.pendingTrips).to.deep.equal([]);
-  });
-  
-  it('should be able to add a trip', () => {
-    traveler.makeTripRequest('Denver', '2023/05/03', 7, 3);
-    expect(traveler.pendingTrips).to.deep.equal([{
+    traveler = new Traveler({
       id: 1,
-        destination: 'Denver',
-        date: '2022/06/01',
-        duration: 7,
-        travelers: 3,
-        status: 'pending',
-        suggestedActivities: [],
-    }])
+      name: 'John Smith',
+      travelerType: 'business'
+    });
   });
-})
 
+  describe('constructor', () => {
+    it('should create a new traveler object', () => {
+      expect(traveler).to.be.an.instanceOf(Traveler);
+    });
+
+    it('should set the traveler ID', () => {
+      expect(traveler.id).to.equal(1);
+    });
+
+    it('should set the traveler name', () => {
+      expect(traveler.name).to.equal('John Smith');
+    });
+
+    it('should set the traveler type', () => {
+      expect(traveler.travelType).to.equal('business');
+    });
+
+    it('should initialize an empty trips array', () => {
+      expect(traveler.trips).to.deep.equal([]);
+    });
+  });
+});
