@@ -18,10 +18,7 @@ const numTravelers = document.querySelector(".num-travelers");
 const durationNum = document.querySelector(".duration-num");
 const selectDestination = document.querySelector(".select-destination");
 const makeTripForm = document.querySelector(".make-trip-form");
-const travelerSection = document.querySelector(".traveler-data-section");
 const table = document.querySelector(".table");
-const tripRow = document.querySelector(".trip-row");
-const test = document.querySelector(".test");
 window.addEventListener("load", travelerLogin);
 submitTravelButton.addEventListener("click", makeTrip);
 planTripButton.addEventListener("click", viewForm);
@@ -70,6 +67,7 @@ function populateDestinations(destinations) {
     selectDestination.innerHTML += destinationOption;
   });
 }
+
 function travelerLogin(e) {
   e.preventDefault();
   logInInput.innerHTML = `
@@ -85,24 +83,21 @@ function travelerLogin(e) {
 }
 
 function displayTrips(data) {
-
   table.innerHTML = "";
   table.classList.remove("hidden");
   logInInput.classList.add("hidden");
   homeButton.classList.remove("hidden");
   planTripButton.classList.remove("hidden");
   data.forEach((trip) => {
-   
     let tripUpdate = `<tr>
-      <td>${trip.date}</td>
-      <td>${trip.status}</td>
-      <td>${trip.destination.destination}</td>
- <td>${trip.travelers}</td>
-<td>${trip.destination.estimatedFlightCostPerPerson}</td>
-<td>${trip.destination.estimatedLodgingCostPerDay}</td>
-<td>${trip.totalCost}</td>
-<td><img src="${trip.destination.image}" alt="${trip.destination}" height="100px"  width="200px"/></td> 
-      
+    <td>${trip.date}</td>
+    <td>${trip.status}</td>
+    <td>${trip.destination.destination}</td>
+    <td>${trip.travelers}</td>
+    <td>${trip.destination.estimatedFlightCostPerPerson}</td>
+    <td>${trip.destination.estimatedLodgingCostPerDay}</td>
+    <td>${trip.totalCost}</td>
+    <td><img src="${trip.destination.image}" alt="${trip.destination}" height="100px"  width="200px"/></td> 
     </tr>`;
     table.innerHTML += tripUpdate;
   });
