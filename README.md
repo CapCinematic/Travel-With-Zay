@@ -17,4 +17,3 @@ Isaiah Richardson
 
 https://github.com/CapCinematic
 
-![Travel-By-Zay](dist/images/)
