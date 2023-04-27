@@ -89,7 +89,18 @@ function displayTrips(data) {
   homeButton.classList.remove("hidden");
   planTripButton.classList.remove("hidden");
   data.forEach((trip) => {
-    let tripUpdate = `<tr>
+    let tripUpdate = `
+    <tr>
+        <th>Trip Dates</th>
+        <th>Trip Status</th>
+        <th>Destinations</th>
+        <th>Travelers</th>
+        <th>Flight Cost</th>
+        <th>Lodging Cost</th>
+        <th>Total Cost Of Trip</th>
+        <th>Memories</th>
+      </tr>
+    <tr>
     <td>${trip.date}</td>
     <td>${trip.status}</td>
     <td>${trip.destination.destination}</td>

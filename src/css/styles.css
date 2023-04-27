@@ -7,11 +7,11 @@ body {
 .hidden{
   display: none;
 }
+
 .view{
   display: contents;
 }
 
-/* header */
 nav {
   display: flex;
   justify-content: space-between;
@@ -46,38 +46,72 @@ nav button:hover {
   box-shadow: 5px 5px 10px #888888;
 }
 
-form label{
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
 }
 
-form input[type="date"],
-form input[type="number"],
-form select {
-  font-size: 16px;
+fieldset{
+  border: solid skyblue 5px;
+}
+
+legend{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+input{
+  height: 30px;
+  width: 300px;
+  margin: 10px;
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
+  border: none;
+  font-size: 1.2em;
 }
 
-form input[type="submit"],
-form button {
-  background-color: #0077c0;
-  color: whitesmoke;
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
+button{
+  height: 50px;
+  width: 150px;
+  font-size: 1.2em;
+  background-color: #ffffff;
+  border-radius: 5px;
+  color: #FFBC42;
+  border: black solid 2px;
   cursor: pointer;
 }
 
-form input[type="submit"]:hover,
-form button:hover {
-  background-color: green;
+.table{
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+th, td{
+  border: 1px solid #ffffff;
+  padding: 10px;
+
+}
+
+th{
+  background-color: rgb(191, 245, 218);
+  font-size: 1.2em;
+}
+
+td{
+  background-color: #ffffff;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+img{
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+  border-radius: 5px;
 }
 
 aside{
@@ -108,7 +142,7 @@ aside p {
   flex-direction: column;
 }
 #form1{
-  border: solid 1px black;
+  border: solid 5px black;
   justify-content: center;
   align-items: center;
 }
